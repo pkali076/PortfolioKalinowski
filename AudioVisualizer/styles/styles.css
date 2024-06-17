@@ -1,0 +1,83 @@
+ @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+        navbar-code {
+            font-family: 'Audiowide';
+        }
+
+        section {
+            font-family: 'Audiowide';
+        }
+
+        h1 {
+            font-family: 'Audiowide';
+        }
+
+        body {
+            font-family: 'Audiowide';
+        }
+        
+        a:hover {
+            color: yellow;
+        }
+
+        #colorPara {
+            color: #00A9E0;
+        }
+        
+        div {
+            font-family: 'Audiowide';
+            color: #00A9E0;
+
+        }
+
+        #myContainer {
+            position: relative;
+            top: 0;
+            left: 0;
+            /* background: black; */
+            background: rgb(69, 72, 77);
+            background: linear-gradient(to bottom, rgba(69, 72, 77, 1) 0%, rgba(0, 0, 0, 1) 100%);
+
+            width: 100%;
+            color: #00A9E0;
+
+        }
+
+        #canvas1 {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(2px) contrast(2);
+        }
+
+        #audio1 {
+            width: 100%;
+            margin: 50px auto;
+            display: block;
+        }
+
+        #colorPara {
+            color: #00A9E0;
+        }
+
+        #fileupload {
+            position: relative;
+            color: black;
+            z-index: 100;
+        }
+
+        #fsButtonCSS {
+            position: relative;
+            text-align: center;
+
+        }
+
+        button[data-playing="yes"]:after {
+            content: "Pause";
+        }
+
+        button[data-playing="no"]:after {
+            content: "Play";
+        }

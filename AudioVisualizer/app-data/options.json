@@ -1,0 +1,11 @@
+{
+    "options": [
+        {
+            "showGradient": false,
+            "showArcs": false,
+            "showRectangles": false,
+            "showCircles": false,
+            "showInvert": false
+        }
+    ]
+}
