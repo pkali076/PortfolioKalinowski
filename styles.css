@@ -10,7 +10,7 @@ body {
     color: #e0e0e0;
     line-height: 1.6;
     background-color: #121212;
-    padding-bottom: 50px; /* Ensures footer is visible */
+    padding-bottom: 50px; /* padding for footer visibility */
 }
 
 /* Header and Navigation */
@@ -91,12 +91,38 @@ footer {
     background: #1f1f1f;
     color: #e0e0e0;
     text-align: center;
-    padding: 1rem 0;
-    position: fixed;
-    bottom: 0;
+    padding: 2rem 0;
+    position: relative;
     width: 100%;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
+
+footer .footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+footer .social-links a {
+    color: #76c7c0;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.2rem;
+}
+
+footer .social-links a:hover {
+    color: #ffab40;
+}
+
+footer p, footer a {
+    font-size: 0.9rem;
+}
+
+footer .footer-bottom {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
 
 /* Links */
 a {
