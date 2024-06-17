@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,17 +7,19 @@
 
 body {
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: #333;
+    color: #e0e0e0;
     line-height: 1.6;
-    background-color: #f4f4f9;
+    background-color: #121212;
     padding-bottom: 50px; /* Ensures footer is visible */
 }
 
+/* Header and Navigation */
 header {
-    background: #007acc;
+    background: #1f1f1f;
     color: #fff;
     padding: 1rem 0;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 nav ul {
@@ -30,21 +33,23 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #76c7c0;
     text-decoration: none;
     font-weight: bold;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    color: #ffab40;
 }
 
+/* Main content */
 main {
     max-width: 800px;
     margin: 2rem auto;
-    padding: 1rem;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    background: #1f1f1f;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
 }
 
 h1, h2 {
@@ -58,7 +63,7 @@ h1 {
 
 h2 {
     font-size: 2rem;
-    color: #007acc;
+    color: #76c7c0;
 }
 
 p, ul {
@@ -69,6 +74,7 @@ ul {
     list-style: disc inside;
 }
 
+/* Sections and media */
 section {
     margin-bottom: 2rem;
 }
@@ -77,22 +83,53 @@ img, video {
     max-width: 100%;
     display: block;
     margin: 1rem 0;
+    border-radius: 4px;
 }
 
+/* Footer */
 footer {
-    background: #333;
-    color: #fff;
+    background: #1f1f1f;
+    color: #e0e0e0;
     text-align: center;
     padding: 1rem 0;
     position: fixed;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Links */
 a {
-    color: #007acc;
+    color: #76c7c0;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #ffab40;
+    text-decoration: none;
+}
+
+/* Additional styles for a cleaner look */
+.container {
+    padding: 0 1rem;
+}
+
+header h1, footer p {
+    font-weight: 300;
+}
+
+section {
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 0.5rem 0;
+    }
 }
