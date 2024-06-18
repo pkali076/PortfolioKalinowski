@@ -1,100 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:;base64,=">
     <title>Project I</title>
-
     <link href="styles/styles.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script src="./src/loader.js" type="module"></script>
-
 </head>
-
 <body>
-
     <navbar-code></navbar-code>
     <section class="hero is-dark">
         <div class="hero-body">
-            <p class="title" id="colorPara">
-                Audio Visualizer Application
-            </p>
-            <p class="subtitle" id="colorPara">
-                Select an mp3 from the drop-down to display a visualizer!
-            </p>
+            <p class="title" id="colorPara">Audio Visualizer Application</p>
+            <p class="subtitle" id="colorPara">Select an mp3 from the drop-down to display a visualizer!</p>
         </div>
     </section>
     <section class="section" style="padding-bottom:300px;">
         <div style="text-align: center;">
-            <!--  <div class="container">-->
-            <div class="columns ">
-
-                <!-- <div class="column is-6-tablet is-3-desktop"> -->
+            <div class="columns">
                 <div>
                     <h1 class="is-size-4-mobile is-size-3-tablet title">Audio Visualizer</h1>
-
                 </div>
-                <div class="column is-dark is-6-tablet is-3-desktop " id="myContainer">
+                <div class="column is-dark is-6-tablet is-3-desktop" id="myContainer">
                     <canvas id="canvas1" width="640" height="480"></canvas>
-                    <!-- <audio id="audio1" controls></audio> -->
                     <section style="padding-top:50px;">
                         Volume: <input type="range" id="volumeSlider" min="0" max="2" value="1" step="0.01">
                         <span id="volumeLabel">???</span>
                     </section>
-                    <div class="column is-dark is-6-tablet is-3-desktop " id="myContainer">
+                    <div class="column is-dark is-6-tablet is-3-desktop" id="myContainer">
                         <section>
-
-                            <input type="checkbox" id="gradientCB"><label for="gradientCB">Show Gradient</label></span>
-                            <input type="checkbox" id="arcsCB"><label for="arcsCB">Show Arcs</label></span>
-                            <input type="checkbox" id="circlesCB"><label for="circlesCB">Show Circles</label></span>
-                            <input type="checkbox" id="clownCB"><label for="clownCB">Clown</label></span>
-                            <input type="checkbox" id="redAndBlackCB"><label for="redAndBlackCB">Red &
-                                Black</label></span>
-                            <input type="checkbox" id="invertCB"><label for="invertCB">Invert Colors</label></span>
-                            <input type="checkbox" id="showSpecialCB"><label for="showSpecialCB">Special</label></span>
+                            <input type="checkbox" id="gradientCB"><label for="gradientCB">Show Gradient</label>
+                            <input type="checkbox" id="arcsCB"><label for="arcsCB">Show Arcs</label>
+                            <input type="checkbox" id="circlesCB"><label for="circlesCB">Show Circles</label>
+                            <input type="checkbox" id="clownCB"><label for="clownCB">Clown</label>
+                            <input type="checkbox" id="redAndBlackCB"><label for="redAndBlackCB">Red & Black</label>
+                            <input type="checkbox" id="invertCB"><label for="invertCB">Invert Colors</label>
+                            <input type="checkbox" id="showSpecialCB"><label for="showSpecialCB">Special</label>
                         </section>
-
-
                         <section>
-                            <button id="playButton" data-playing="no"></button>
+                            <button id="playButton" data-playing="no">Play</button>
                             <button id="fsButton">Full Screen</button>
-
-                            <label for="trackSelect">Track:</label></label>
-                                <select id="trackSelect">
-
-                                    <option value="media/PretzelLogic.mp3">Steely Dan - Pretzel Logic</option>
-                                    <option value="media/StreamofConsciousness.mp3">Spencer Brown - Stream of Consciousness</option>
-                                    <option value="media/ThatsLife.mp3">Frank Sinatra - That's Life</option>
-                                    <option value="media/CaroloftheBells.mp3">Lindsey Stirling - Carol of the Bells</option>
-                                    <option value="media/SlowBluesinC.mp3">Ten Years After - Slow Blues in C</option>
-                                    <option value="media/TheDarkWorld.mp3">The Dark World - Legend of Zelda</option>
-                                    <option value="media/GerudoValley.mp3">Gerudo Valley - Legend of Zelda</option>
-                                    <option value="media/AloysTheme.mp3">Aloy's Theme - Horizon Zero Dawn</option>
-                                    <option value="media/FurElise.mp3">Beethoven - Fur Elise</option>
-                                    <option value="media/Pirates.mp3">Pirates</option>
-                                    <option value="media/ConcerningHobbits.mp3">Concerning Hobbits</option>
-                                </select>
+                            <label for="trackSelect">Track:</label>
+                            <select id="trackSelect">
+                                <option value="media/PretzelLogic.mp3">Steely Dan - Pretzel Logic</option>
+                                <option value="media/StreamOfConsciousness.mp3">Spencer Brown - Stream of Consciousness</option>
+                                <option value="media/ThatsLife.mp3">Frank Sinatra - That's Life</option>
+                                <option value="media/CaroloftheBells.mp3">Lindsey Stirling - Carol of the Bells</option>
+                                <option value="media/SlowBluesinC.mp3">Ten Years After - Slow Blues in C</option>
+                                <option value="media/TheDarkWorld.mp3">The Dark World - Legend of Zelda</option>
+                                <option value="media/GerudoValley.mp3">Gerudo Valley - Legend of Zelda</option>
+                                <option value="media/AloysTheme.mp3">Aloy's Theme - Horizon Zero Dawn</option>
+                                <option value="media/FurElise.mp3">Beethoven - Fur Elise</option>
+                                <option value="media/Pirates.mp3">Pirates</option>
+                                <option value="media/ConcerningHobbits.mp3">Concerning Hobbits</option>
+                            </select>
                             <audio id="audio" controls></audio>
                         </section>
                     </div>
                 </div>
-
-
-
             </div>
-
         </div>
-
-
-
     </section>
-
-
-    <my-footer data-title=" Audio Visualizer">
-    </my-footer>
-
-
+    <my-footer data-title=" Audio Visualizer"></my-footer>
+</body>
 </html>

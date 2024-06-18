@@ -32,7 +32,7 @@ function loadSoundFile(filePath) {
 }
 
 function playCurrentSound() {
-    element.play();
+    element.play().catch(error => console.log(`Error playing audio: ${error}`));
 }
 
 function pauseCurrentSound() {
