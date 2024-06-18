@@ -49,15 +49,12 @@ function setupUI(canvasElement){//}, json){
         
         utils.goFullscreen(canvasElement);
     };
-    //console.log(json.options[0].showArcs);
 
-   // console.log(arr);
     arcsBox.onclick = e => {
       if(drawParams.showArcs == true){
           drawParams.showArcs = false; 
       }else{
           drawParams.showArcs = true;
-         // console.log(drawParams[0].showArcs);
       }
   }
   
@@ -119,11 +116,11 @@ function setupUI(canvasElement){//}, json){
   if(e.target.dataset.playing == "no"){
       //if track is crrently paused, play it
       audio.playCurrentSound();
-      e.target.dataset.playing = "yes"; //our CSS will set the test to "pause"
+      e.target.dataset.playing = "yes"; 
       //if track is playing, pause it
   }else{
       audio.pauseCurrentSound();
-      e.target.dataset.playing = "no"; // our CSS will set the text to "play"
+      e.target.dataset.playing = "no"; 
   }
 
 };
