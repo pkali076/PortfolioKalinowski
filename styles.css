@@ -149,15 +149,15 @@ section {
 
 /* Wide Container Specific Styles */
 .wide-container {
-    max-width: 1000px; /* Adjust this value as needed */
+    max-width: 1400px; 
 }
 
 .wide-container img {
-    width: 80%; /* Adjust this value as needed */
+    width: 80%; 
 }
 
 .wide-container .code-snippet pre {
-    white-space: pre-wrap; /* Ensures code snippets wrap properly */
+    white-space: pre-wrap; 
 }
 
 @media (max-width: 600px) {
