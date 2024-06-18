@@ -90,10 +90,12 @@ function setupUI(canvasElement){
             // If track is currently paused, play it
             audio.playCurrentSound();
             e.target.dataset.playing = "yes"; // Our CSS will set the text to "Pause"
+            e.target.textContent = "Pause";
         } else {
             // If track is playing, pause it
             audio.pauseCurrentSound();
             e.target.dataset.playing = "no"; // Our CSS will set the text to "Play"
+            e.target.textContent = "Play";
         }
     };
 

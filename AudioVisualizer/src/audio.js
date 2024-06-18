@@ -27,8 +27,9 @@ function setupWebaudio(filePath) {
 }
 
 function loadSoundFile(filePath) {
+    console.log(`Loading file: ${filePath}`);
     element.src = filePath;
-    element.load(); // Ensure the audio element is loaded
+    element.load();
 }
 
 function playCurrentSound() {
