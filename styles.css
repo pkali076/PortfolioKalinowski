@@ -154,6 +154,7 @@ section {
 
 .wide-container img {
     width: 80%; 
+    height: auto;
 }
 
 .wide-container .code-snippet pre {
