@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'fantasy_names.dart';
 
 class OpenAIService {
-  String apiKey = '';
+  String apiKey = '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';
 
   Future<String> generateMadLib(
       List<String> adjectives, List<String> nouns, List<String> verbs) async {
