@@ -123,7 +123,6 @@ footer .footer-bottom {
     color: #666;
 }
 
-
 /* Links */
 a {
     color: #76c7c0;
@@ -148,6 +147,19 @@ section {
     border-bottom: 1px solid #333;
 }
 
+/* Wide Container Specific Styles */
+.wide-container {
+    max-width: 1000px; /* Adjust this value as needed */
+}
+
+.wide-container img {
+    width: 80%; /* Adjust this value as needed */
+}
+
+.wide-container .code-snippet pre {
+    white-space: pre-wrap; /* Ensures code snippets wrap properly */
+}
+
 @media (max-width: 600px) {
     main {
         margin: 1rem;
@@ -157,5 +169,9 @@ section {
     nav ul li {
         display: block;
         margin: 0.5rem 0;
+    }
+
+    .wide-container img {
+        width: 100%; /* Ensure images take full width on smaller screens */
     }
 }
