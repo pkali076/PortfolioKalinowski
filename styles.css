@@ -13,14 +13,6 @@ body {
     padding-bottom: 50px; /* padding for footer visibility */
 }
 
-.profile-picture {
-    width: 150px; /* Adjust the size as needed */
-    height: 150px;
-    border-radius: 50%;
-    margin-top: 1rem;
-    border: 3px solid #76c7c0; /* Optional: Add a border */
-}
-
 /* Header and Navigation */
 header {
     background: #1f1f1f;
@@ -28,6 +20,20 @@ header {
     padding: 1rem 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 100px; /* Adjust the size as needed */
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 1rem;
+    border: 3px solid #76c7c0; /* Optional: Add a border */
 }
 
 nav ul {
@@ -157,16 +163,16 @@ section {
 
 /* Wide Container Specific Styles */
 .wide-container {
-    max-width: 1400px; 
+    max-width: 1000px; /* Adjust this value as needed */
 }
 
 .wide-container img {
-    width: 80%; 
-    height: auto;
+    width: 80%; /* Adjust this percentage or use a fixed width */
+    height: auto; /* Ensures the aspect ratio is maintained */
 }
 
 .wide-container .code-snippet pre {
-    white-space: pre-wrap; 
+    white-space: pre-wrap; /* Ensures code snippets wrap properly */
 }
 
 @media (max-width: 600px) {
