@@ -13,6 +13,14 @@ body {
     padding-bottom: 50px; /* padding for footer visibility */
 }
 
+.profile-picture {
+    width: 150px; /* Adjust the size as needed */
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 1rem;
+    border: 3px solid #76c7c0; /* Optional: Add a border */
+}
+
 /* Header and Navigation */
 header {
     background: #1f1f1f;
