@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle copy button click
     copybtn.onclick = () => {
-        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ bg: 2, st: 2 }]) + "\n```";
+        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ fg: 2, st: 2 }]) + "\n```";
         navigator.clipboard.writeText(toCopy).then(() => {
             alert("Text copied to clipboard!");
         }, (err) => {
