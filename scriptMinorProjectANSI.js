@@ -77,7 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    // Convert nodes to ANSI codes
+    // designed to traverse a tree of DOM-like nodes and convert them into ANSI escape codes
+
+    //typically used in terminals to style text (like setting foreground color, background color, etc.)
     function nodesToANSI(nodes, states) {
         let text = "";
         for (const node of nodes) {
@@ -93,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const newState = Object.assign({}, states.at(-1));
 
             if (ansiCode < 30) newState.st = ansiCode; // Style codes (bold, underline)
-            if (ansiCode >= 30 && ansiCode <= 44) newState.fg = ansiCode; // Foreground colors
+            if (ansiCode >= 30 && ansiCode <= 44) newState.bg = ansiCode; // Foreground colors
 
             states.push(newState);
-            text += `\x1b[${newState.st};${newState.fg}m`;
+            text += `\x1b[${newState.st};${newState.bg}m`;
             text += nodesToANSI(node.childNodes, states);
             states.pop();
             text += `\x1b[0m`;
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle copy button click
     copybtn.onclick = () => {
-        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ fg: 2, st: 2 }]) + "\n```";
+        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ bg: 2, st: 2 }]) + "\n```";
         navigator.clipboard.writeText(toCopy).then(() => {
             alert("Text copied to clipboard!");
         }, (err) => {
