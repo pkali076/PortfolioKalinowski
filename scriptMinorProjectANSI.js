@@ -95,21 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const newState = Object.assign({}, states.at(-1));
 
             if (ansiCode < 29) newState.st = ansiCode; // Style codes (bold, underline)
-            if (ansiCode >= 29 && ansiCode <= 45) newState.fg = ansiCode; // Foreground colors
+            if (ansiCode >= 29 && ansiCode <= 45) newState.bg = ansiCode; // Foreground colors
 
             states.push(newState);
-            text += `\x1b[${newState.st};${newState.fg}m`;
+            text += `\x1b[${newState.st};${newState.bg}m`;
             text += nodesToANSI(node.childNodes, states);
             states.pop();
             text += `\x1b[0m`;
-            if (states.at(-1).fg !== 2) text += `\x1b[${states.at(-1).st};${states.at(-1).fg}m`;
+            if (states.at(-1).bg !== 2) text += `\x1b[${states.at(-1).st};${states.at(-1).bg}m`;
         }
         return text;
     }
 
     // Handle copy button click
     copybtn.onclick = () => {
-        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ fg: 2, st: 2 }]) + "\n```";
+        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ bg: 2, st: 2 }]) + "\n```";
         navigator.clipboard.writeText(toCopy).then(() => {
             alert("Text copied to clipboard!");
         }, (err) => {
