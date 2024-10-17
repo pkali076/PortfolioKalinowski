@@ -6,21 +6,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.querySelector(".tooltip");
 
     const tooltipTexts = {
-        "30": "Orange Red",
         "31": "Bright Red",
-        "32": "Bright Green",
-        "33": "Golden Yellow",
-        "34": "Sky Blue",
-        "35": "Vivid Purple",
-        "36": "Teal",
-        "37": "White",
-        "38": "Light Salmon",
-        "39": "Blue Violet",
-        "40": "Cornflower Blue",
-        "41": "Light Coral",
-        "42": "Medium Sea Green",
-        "43": "Hot Pink",
-        "44": "Steel Blue",
+        "32": "Light Coral",
+        "33": "Oramge Red",
+        "34": "Hot Pink",
+        "35": "Light Salmon",
+        "36": "Golden Yellow",
+        "37": "Bright Green",
+        "38": "Medium Sea Green",
+        "39": "Sky Blue",
+        "40": "Steel Blue",
+        "41": "Cornflower Blue",
+        "42": "Vivid Purple",
+        "43": "Blue Violet",
+        "44": "Teal",
+        "45": "Pure White"
     };
 
     // Sanitize pasted content
