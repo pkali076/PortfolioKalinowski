@@ -52,8 +52,13 @@ html {
     cursor: pointer;
     transition: background-color 250ms linear;
 }
-ul {
-    columns: justify;
+.instructions {
+    text-align:left;
+    display:inline-block;
+    margin:0;
+    padding:0;
+    line-height:1.5;
+    list-style:none;
 }
 
 a, a:visited {
