@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (ansiCode >= 30 && ansiCode <= 44) newState.bg = ansiCode; // Foreground colors
 
             states.push(newState);
-            text += `\x1b[${newState.st};${newState.bg}m`;
+            text += `\x1b[${newState.st};${newState.fg}m`;
             text += nodesToANSI(node.childNodes, states);
             states.pop();
             text += `\x1b[0m`;
