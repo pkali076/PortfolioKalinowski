@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
         "35": "Vivid Purple",
         "36": "Teal",
         "37": "White",
+        "38": "Light Salmon",
+        "39": "Blue Violet",
+        "40": "Cornflower Blue",
+        "41": "Light Coral",
+        "42": "Medium Sea Green",
+        "43": "Hot Pink",
+        "44": "Steel Blue",
     };
 
     // Sanitize pasted content
