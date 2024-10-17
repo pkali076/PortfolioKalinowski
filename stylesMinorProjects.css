@@ -73,12 +73,12 @@ a, a:visited {
 .ansi-36 { color: #FFD700; } /* Golden Yellow */
 .ansi-37 { color: #32CD32; } /* Bright Green */
 .ansi-38 { color: #3CB371; } /* Medium Sea Green */
-.ansi-39 { color: #00BFFF; } /* Sky Blue */
-.ansi-40 { color: #4682B4; } /* Steel Blue */
-.ansi-41 { color: #6495ED; } /* Cornflower Blue */
-.ansi-42 { color: #9370DB; } /* Vivid Purple */
-.ansi-43 { color: #8A2BE2; } /* Blue Violet */
-.ansi-44 { color: #20B2AA; } /* Teal */
+.ansi-39 { color: #20B2AA; } /* Teal */
+.ansi-40 { color: #00BFFF; } /* Sky Blue */
+.ansi-41 { color: #4682B4; } /* Steel Blue */
+.ansi-42 { color: #6495ED; } /* Cornflower Blue */
+.ansi-43 { color: #9370DB; } /* Vivid Purple */
+.ansi-44 { color: #8A2BE2; } /* Blue Violet */
 .ansi-45 { color: #FFFFFF; } /* Pure White */
 
 
@@ -90,10 +90,10 @@ a, a:visited {
 .ansi-36-bg { background-color: #FFD700; } /* Golden Yellow */
 .ansi-37-bg { background-color: #32CD32; } /* Bright Green */
 .ansi-38-bg { background-color: #3CB371; } /* Medium Sea Green */
-.ansi-39-bg { background-color: #00BFFF; } /* Sky Blue */
-.ansi-40-bg { background-color: #4682B4; } /* Steel Blue */
-.ansi-41-bg { background-color: #6495ED; } /* Cornflower Blue */
-.ansi-42-bg { background-color: #9370DB; } /* Vivid Purple */
-.ansi-43-bg { background-color: #8A2BE2; } /* Blue Violet */
-.ansi-44-bg { background-color: #20B2AA; } /* Teal */
+.ansi-39-bg { background-color: #20B2AA; } /* Teal */
+.ansi-40-bg { background-color: #00BFFF; } /* Sky Blue */
+.ansi-41-bg { background-color: #4682B4; } /* Steel Blue */
+.ansi-42-bg { background-color: #6495ED; } /* Cornflower Blue */
+.ansi-43-bg { background-color: #9370DB; } /* Vivid Purple */
+.ansi-44-bg { background-color: #8A2BE2; } /* Blue Violet */
 .ansi-45-bg { background-color: #FFFFFF; } /* Pure White */
