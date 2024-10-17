@@ -73,11 +73,20 @@ a, a:visited {
 .ansi-1 { font-weight: 700; text-decoration: none; }
 .ansi-4 { font-weight: 500; text-decoration: underline; }
 
-.ansi-30 { background-color: #4F545C; }   /* Dark Gray */
-.ansi-31 { background-color: #FF5C58; }   /* Bright Red */
-.ansi-32 { background-color: #32CD32; }   /* Bright Green */
-.ansi-33 { background-color: #FFD700; }   /* Golden Yellow */
-.ansi-34 { background-color: #00BFFF; }   /* Sky Blue */
-.ansi-35 { background-color: #9370DB; }   /* Vivid Purple */
-.ansi-36 { background-color: #20B2AA; }   /* Teal */
-.ansi-37 { background-color: #FFFFFF; }   /* Pure White */
+.ansi-30 { color: #4F545C; }   /* Dark Gray */
+.ansi-31 { color: #FF5C58; }   /* Bright Red */
+.ansi-32 { color: #32CD32; }   /* Bright Green */
+.ansi-33 { color: #FFD700; }   /* Golden Yellow */
+.ansi-34 { color: #00BFFF; }   /* Sky Blue */
+.ansi-35 { color: #9370DB; }   /* Vivid Purple */
+.ansi-36 { color: #20B2AA; }   /* Teal */
+.ansi-37 { color: #FFFFFF; }   /* Pure White */
+
+.ansi-30-bg { background-color: #4F545C; }   /* Dark Gray */
+.ansi-31-bg { background-color: #FF5C58; }   /* Bright Red */
+.ansi-32-bg { background-color: #32CD32; }   /* Bright Green */
+.ansi-33-bg { background-color: #FFD700; }   /* Golden Yellow */
+.ansi-34-bg { background-color: #00BFFF; }   /* Sky Blue */
+.ansi-35-bg { background-color: #9370DB; }   /* Vivid Purple */
+.ansi-36-bg { background-color: #20B2AA; }   /* Teal */
+.ansi-37-bg { background-color: #FFFFFF; }   /* Pure White */
