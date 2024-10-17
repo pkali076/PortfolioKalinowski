@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tooltip = document.querySelector(".tooltip");
 
     const tooltipTexts = {
-        "30": "Dark Gray",
+        "30": "Orange Red",
         "31": "Bright Red",
         "32": "Bright Green",
         "33": "Golden Yellow",
