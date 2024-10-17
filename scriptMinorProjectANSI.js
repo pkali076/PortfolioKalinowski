@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const newState = Object.assign({}, states.at(-1));
 
             if (ansiCode < 30) newState.st = ansiCode; // Style codes (bold, underline)
-            if (ansiCode >= 30 && ansiCode <= 44) newState.bg = ansiCode; // Foreground colors
+            if (ansiCode >= 30 && ansiCode <= 44) newState.fg = ansiCode; // Foreground colors
 
             states.push(newState);
             text += `\x1b[${newState.st};${newState.fg}m`;
