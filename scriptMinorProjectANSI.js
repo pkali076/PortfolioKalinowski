@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         btn.onmouseenter = () => {
             const ansiCode = btn.dataset.ansi;
-            if (!(ansiCode >= 29 && ansiCode <= 44)) return;
+            if (!(ansiCode >= 29 && ansiCode <= 45)) return;
 
             const rect = btn.getBoundingClientRect();
             tooltip.style.display = "block";
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const newState = Object.assign({}, states.at(-1));
 
             if (ansiCode < 29) newState.st = ansiCode; // Style codes (bold, underline)
-            if (ansiCode >= 29 && ansiCode <= 44) newState.fg = ansiCode; // Foreground colors
+            if (ansiCode >= 29 && ansiCode <= 45) newState.fg = ansiCode; // Foreground colors
 
             states.push(newState);
             text += `\x1b[${newState.st};${newState.fg}m`;
