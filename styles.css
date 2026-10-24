@@ -210,3 +210,8 @@ section {
         width: 100%; /* Ensure images take full width on smaller screens */
     }
 }
+.job { margin-bottom: 1.5rem; }
+.job h3 { margin-bottom: 0.2rem; }
+.job-meta { margin-top: 0; font-style: italic; opacity: 0.8; }
+details { margin: 0.75rem 0; }
+summary { cursor: pointer; font-weight: bold; }
