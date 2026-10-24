@@ -63,14 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
             selection.addRange(range);
         };
         btn.onmouseenter = () => {
-            const ansiCode = btn.dataset.ansi;
-            if (!(ansiCode >= 29 && ansiCode <= 45)) return;
-
+            if (!(btn.dataset.ansi > 4)) return;
             const rect = btn.getBoundingClientRect();
             tooltip.style.display = "block";
-            tooltip.innerText = tooltipTexts[ansiCode];
+            tooltip.innerText = tooltipTexts[btn.dataset.ansi];
             tooltip.style.top = `${rect.top - 36}px`;
-            tooltip.style.left = `${rect.left - tooltip.clientWidth / 2 + btn.clientWidth / 2}px`;
+            tooltip.style.left = `${rect.left - tooltip.clientWidth/2 + btn.clientWidth/2}px`;
         };
         btn.onmouseleave = () => {
             tooltip.style.display = "none";
@@ -94,22 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const ansiCode = +(node.className.split("-")[1]);
             const newState = Object.assign({}, states.at(-1));
 
-            if (ansiCode < 29) newState.st = ansiCode; // Style codes (bold, underline)
-            if (ansiCode >= 29 && ansiCode <= 45) newState.bg = ansiCode; // Foreground colors
+            if (ansiCode < 31) newState.st = ansiCode; // Style codes (bold, underline)
+            if (ansiCode >= 31 && ansiCode <= 45) newState.fg = ansiCode; // foreground colors
 
             states.push(newState);
             text += `\x1b[${newState.st};${newState.bg}m`;
             text += nodesToANSI(node.childNodes, states);
             states.pop();
             text += `\x1b[0m`;
-            if (states.at(-1).bg !== 2) text += `\x1b[${states.at(-1).st};${states.at(-1).bg}m`;
+            if (states.at(-1).fg !== 2) text += `\x1b[${states.at(-1).st};${states.at(-1).fg}m`;
         }
         return text;
     }
 
     // Handle copy button click
     copybtn.onclick = () => {
-        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ bg: 2, st: 2 }]) + "\n```";
+        const toCopy = "```ansi\n" + nodesToANSI(textarea.childNodes, [{ fg: 2, st: 2 }]) + "\n```";
         navigator.clipboard.writeText(toCopy).then(() => {
             alert("Text copied to clipboard!");
         }, (err) => {
