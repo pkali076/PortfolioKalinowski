@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MN Cockpit Project</title>
+     <meta name="description" content="MN Cockpit - a quality KPI dashboard built with SQL and Oracle APEX for a BMW Group supplier quality team. Case study by Philip Kalinowski.">
+    <title>MN Cockpit | Philip Kalinowski</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,128 +18,208 @@
             </ul>
         </nav>
     </header>
-    <main class="wide-container">
-        <section id="project-details">
-            <h2>Project Overview</h2>
-            <p>This project is a streamlined data analytics homepage for the department of MN at BMW Group in South Carolina.</p>
-            <h2>Images</h2>
-            <div class="image-gallery">
-                <img src="Assets/Images/FrontPageCurrentWeek.png" alt="Front Page Current Week">
-                <img src="Assets/Images/FrontPageLast7Days.png" alt="Front Page Last 7 Days">
-                <img src="Assets/Images/ReworkHalls.png" alt= "Rework Halls">
-                <img src="Assets/Images/SeriesNumbers.png" alt="Series Numbers">
-            </div>
-            <div class="image-gallery">
-                <img src="Assets/Images/ExampleCodeDailyRMU.png" alt="Daily RMU">
-            </div>
-            <h2>Code Snippets</h2>
-            <h3>Daily RMU (Repair Minutes per Unit)</h3>
-            <div class="code-snippet">
-                <pre>
-                    <code>
-                        select VALUE, MAX, TARGET, case
-                        when                    
-                            VALUE < TARGET then '#34B36E'                    
-                            else '#EE0405' end as COLOR                    
-                        from(                                                            
-                    select round(c.min/d.vins,2) VALUE, 10 MAX,                    
-                        (case                    
-                                when :P3_KIFA = '%' then  3.91                    
-                                when :P3_KIFA = 'MP_2-4' then  1.39                    
-                                when :P3_KIFA = 'MP_5-8' then  1.47                    
-                                when :P3_KIFA = 'MD' then  .51                    
-                                when :P3_KIFA = 'MA' then  .48                    
-                                when :P3_KIFA = 'MT' then  .06                    
-                            else 0                    
-                        end                    
-                        ) TARGET                    
-                            from (                    
-                                SELECT DISTINCT LNK,LABEL                    
-                                    FROM (SELECT DISTINCT YR,LNK,LABEL,ROW_NUMBER () OVER (ORDER BY LNK DESC) AS RN                    
-                                        FROM (SELECT DISTINCT YR,JD LNK,SUBSTR(SID_DAY,0,6) LABEL                    
-                                            FROM ASSEMBLY_APEX_ADMIN.QA_log                    
-                                            )                    
-                                        ) WHERE RN<=1                    
-                                ) B                    
-                        left join (                    
-                            SELECT DISTINCT lnk,sum(repairminutes) min                    
-                                FROM (                    
-                                    select * from (                    
-                                        SELECT jd lnk,c.kidag dept_ID, b.series||' - '||b.prt series_VFC, b.*                    
-                                                    From (                    
-                                                        select * from ASSEMBLY_APEX_ADMIN.QA_KPI_RMU --prod_ts4_rmu                    
-                                                            where repairdate >= sysdate -1 --last 1 day?                    
-                                                        )b                    
-                                                    left join REF_VFC_TO_Supplier c                    
-                                                        on b.series||' - '||b.prt = c.series_VFC                    
-                                                        where  b.DEPT = 'MN' AND b.NOK = 1                    
-                                                ) b                    
-                                        where (dept_ID like :P3_KIFA or dept_ID is null)                    
-                                        and b.hall LIKE :P3_HALL_SELECT                    
-                                    )                    
-                                    group by lnk                    
-                                ) C                    
-                                ON C.lnk =B.lnk                    
-                                left join                    
-                            (select lnk, sum(vc) VINS from                    
-                                (SELECT DISTINCT LNK,KPI,KPIM,KPIC,AREA,SERIES,VC,DCM,VAL                    
-                                    FROM ASSEMBLY_APEX_ADMIN.QA_KPI_FRZ_FREQ --make new view?                    
-                                        WHERE KPI='RMU'                    
-                                    AND NOK=1                    
-                                    AND FREQ='D'                    
-                                    AND AREA='MN'                    
-                                    AND LVL=3                   
-                               )                    
-                            group by lnk
-                            ) d ON d.LNK=B.LNK);
-                    </code>
-                </pre>
-
-            </div>
-            <div class="image-gallery">
-                <img src="Assets/Images/ExampleCodeRMU.png" alt="RMU">
-            </div>
-            <div class="code-snippet">
-                <pre>
-                    <code>
-                        SELECT series, pddesc, round(sum(repairminutes)) as AMOUNT, 
-                            case when series = 'F95' then '#c47b0e'
-                            when series = 'F96' then '#9f9f9f'
-                            when series = 'F97' then '#B0FFFF'
-                            when series = 'F98' then '#00999F'
-                            when series = 'G01' then '#7681CB'
-                            when series = 'G02' then '#960145'
-                            when series = 'G05' then '#4B3369'
-                            when series = 'G06' then '#FA8072'
-                            when series = 'G07' then '#1bb187'
-                            when series = 'G09' then '#32527b'                        
-                        else '#000000' end as SERIES_COLOR
-                        FROM ( SELECT b.* --concat(b.series || ' - ', b.pddesc) as Series_Part,
-                                from
-                                (select pddesc, repairdate, series, prt, NOK, dept, repairminutes, supplier_name_num
-                                        from prod_ts4_rmu--ASSEMBLY_APEX_ADMIN.QA_KPI_RMU b
-                                            where --DEPT = 'MN'
-                                            hall like :P3_HALL_SELECT
-                                            AND NOK = 1
-                                            and repairdate >= (sysdate - 8/24)
-                                    ) b
-                                left join
-                                    (select supplier_name_num_loc, series_vfc, commodity_num, qsp_overwrite from REF_VFC_TO_Supplier) c
-                                    ON b.series||' - '||b.prt = c.SERIES_VFC
-                                left join (select * from APP_60005_QSP_CONTACTS
-                                            WHERE master_qsp = 'x'
-                                            ) e ON c.commodity_num = e.commodity
-                                        where nvl(nvl(qsp_overwrite,QSP_NAME),'x') like :P3_QSP
-                                        and nvl(KIFA,'x') like :P3_KIFA
-                                        -- and c.supplier_name_num_loc like :P3_SUPPLIER_NAME
-                                        and trim(substr(supplier_name_num_loc, 1, instr(supplier_name_num_loc, '_') - 1)) like '%' || upper(:P3_SUPPLIER_NAME) || '%'
-                            ) GROUP BY pddesc, series
-                            ORDER BY round(sum(repairminutes)) DESC fetch first 5 rows only;
-                    </code>
-                </pre>
-            </div>
-            <!-- Add more code snippets as needed -->
+       <main class="wide-container">
+        <section id="disclaimer" class="disclaimer">
+    <p>
+        <strong>Disclaimer:</strong> The screenshots, data, and SQL on this page come from a past, non-live
+        snapshot of an internal BMW Group dashboard. I received permission to share them for portfolio purposes.
+        The data is outdated and does not reflect current BMW Group operations, systems, or performance.
+        This page is not affiliated with or endorsed by BMW Group.
+    </p>
+</section>
+        <section id="summary">
+            <h2>Project Summary</h2>
+            <ul>
+                <li><strong>What:</strong> A one-page quality KPI dashboard for the MN (supplier and parts quality) department</li>
+                <li><strong>Where:</strong> BMW Group, Spartanburg Plant</li>
+                <li><strong>My role:</strong> SQL development, dashboard build, and KPI analysis</li>
+                <li><strong>Tools:</strong> Oracle APEX, Oracle SQL, Power BI (existing report logic)</li>
+            </ul>
         </section>
+
+        <section id="problem">
+            <h2>The Problem</h2>
+            <p>
+                Managers were checking quality numbers across several reports, including an existing Power BI report
+                and other pages of an internal platform. Getting a quick read on the day's quality picture meant
+                jumping between tools.
+            </p>
+        </section>
+
+        <section id="what-i-built">
+            <h2>What I Built</h2>
+            <p>A single dashboard page in Oracle APEX that showed:</p>
+            <ul>
+                <li>Daily and weekly RMU (repair minutes per unit) gauges, colored green or red against the target</li>
+                <li>The top parts driving repair minutes over the last 8 hours, broken out by vehicle series</li>
+                <li>Open defects over the last hour and across the current week</li>
+                <li>Monthly and weekly RMU trends by rework hall, compared against target</li>
+                <li>Weekly results by vehicle series</li>
+                <li>Audit results, downtime, and short-track and road-test call lists</li>
+                <li>Filters for time range, team, quality contact, rework hall, and supplier</li>
+            </ul>
+        </section>
+
+        <section id="screenshots">
+            <h2>Screenshots</h2>
+            <div class="image-gallery">
+                <figure>
+                    <img src="Assets/Images/FrontPageCurrentWeek.png" alt="MN Cockpit front page showing current week RMU gauges, top parts by repair minutes, and open defects">
+                    <figcaption>Front page, current week: RMU gauges, top repair-minute drivers, and open defects</figcaption>
+                </figure>
+                <figure>
+                    <img src="Assets/Images/FrontPageLast7Days.png" alt="MN Cockpit front page filtered to the last 7 days">
+                    <figcaption>Front page filtered to the last 7 days</figcaption>
+                </figure>
+                <figure>
+                    <img src="Assets/Images/ReworkHalls.png" alt="Monthly and weekly RMU trend charts by rework hall compared to target">
+                    <figcaption>Monthly and weekly RMU trends by rework hall, against target</figcaption>
+                </figure>
+                <figure>
+                    <img src="Assets/Images/SeriesNumbers.png" alt="Weekly charts and defect reports by vehicle series">
+                    <figcaption>Weekly results and top defects by vehicle series</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="approach">
+            <h2>How I Approached It</h2>
+            <ul>
+                <li>Reused proven SQL from other parts of the platform instead of rebuilding it from scratch.</li>
+                <li>Migrated the existing Power BI report structure into APEX so managers could see the data in one place.</li>
+                <li>Joined repair records to part and supplier reference tables so each defect could be traced to a supplier and quality contact.</li>
+                <li>Calculated RMU as total repair minutes divided by vehicles produced, then compared it to team-specific targets.</li>
+                <li>Analyzed the KPI data with managers to separate real problems from normal variation.</li>
+            </ul>
+        </section>
+
+        <section id="results">
+            <h2>Result</h2>
+            <p>
+                Managers got one page to check the quality picture at the start of a shift, with the biggest repair-time
+                drivers at the top, so attention went to genuine issues instead of normal day-to-day swings.
+            </p>
+        </section>
+
+        <section id="code">
+            <h2>SQL Examples</h2>
+
+            <h3>Daily RMU (Repair Minutes per Unit)</h3>
+            <p>
+                Calculates repair minutes per unit for the last day, looks up the target for the selected team, and
+                returns green or red for the gauge depending on whether the value is under target.
+            </p>
+            <figure>
+                <img src="Assets/Images/ExampleCodeDailyRMU.png" alt="Daily RMU query in the Oracle APEX code editor">
+                <figcaption>Daily RMU query in the Oracle APEX editor</figcaption>
+            </figure>
+<pre class="code-snippet"><code>SELECT VALUE, MAX, TARGET,
+       CASE WHEN VALUE &lt; TARGET THEN '#34B36E'
+            ELSE '#EE0405' END AS COLOR
+FROM (
+    SELECT ROUND(c.min / d.vins, 2) VALUE, 10 MAX,
+           (CASE
+                WHEN :P3_KIFA = '%'      THEN 3.91
+                WHEN :P3_KIFA = 'MP_2-4' THEN 1.39
+                WHEN :P3_KIFA = 'MP_5-8' THEN 1.47
+                WHEN :P3_KIFA = 'MD'     THEN .51
+                WHEN :P3_KIFA = 'MA'     THEN .48
+                WHEN :P3_KIFA = 'MT'     THEN .06
+                ELSE 0
+            END) TARGET
+    FROM (
+        SELECT DISTINCT LNK, LABEL
+        FROM (SELECT DISTINCT YR, LNK, LABEL,
+                     ROW_NUMBER() OVER (ORDER BY LNK DESC) AS RN
+              FROM (SELECT DISTINCT YR, JD LNK, SUBSTR(SID_DAY, 0, 6) LABEL
+                    FROM ASSEMBLY_APEX_ADMIN.QA_log))
+        WHERE RN &lt;= 1
+    ) B
+    LEFT JOIN (
+        SELECT DISTINCT lnk, SUM(repairminutes) min
+        FROM (
+            SELECT * FROM (
+                SELECT jd lnk, c.kidag dept_ID, b.series || ' - ' || b.prt series_VFC, b.*
+                FROM (
+                    SELECT * FROM ASSEMBLY_APEX_ADMIN.QA_KPI_RMU
+                    WHERE repairdate &gt;= SYSDATE - 1
+                ) b
+                LEFT JOIN REF_VFC_TO_Supplier c
+                    ON b.series || ' - ' || b.prt = c.series_VFC
+                WHERE b.DEPT = 'MN' AND b.NOK = 1
+            ) b
+            WHERE (dept_ID LIKE :P3_KIFA OR dept_ID IS NULL)
+              AND b.hall LIKE :P3_HALL_SELECT
+        )
+        GROUP BY lnk
+    ) C ON C.lnk = B.lnk
+    LEFT JOIN (
+        SELECT lnk, SUM(vc) VINS
+        FROM (SELECT DISTINCT LNK, KPI, KPIM, KPIC, AREA, SERIES, VC, DCM, VAL
+              FROM ASSEMBLY_APEX_ADMIN.QA_KPI_FRZ_FREQ
+              WHERE KPI = 'RMU'
+                AND NOK = 1
+                AND FREQ = 'D'
+                AND AREA = 'MN'
+                AND LVL = 3)
+        GROUP BY lnk
+    ) d ON d.LNK = B.LNK
+);</code></pre>
+
+            <h3>Top 5 Parts by Repair Minutes (Last 8 Hours)</h3>
+            <p>
+                Ranks the parts driving the most repair time in the current shift and assigns each vehicle series a
+                consistent chart color. Filters cover rework hall, quality contact, team, and supplier.
+            </p>
+            <figure>
+                <img src="Assets/Images/ExampleCodeRMU.png" alt="Top parts by repair minutes query in the Oracle APEX code editor">
+                <figcaption>Top parts by repair minutes query in the Oracle APEX editor</figcaption>
+            </figure>
+<pre class="code-snippet"><code>SELECT series, pddesc, ROUND(SUM(repairminutes)) AS AMOUNT,
+       CASE WHEN series = 'F95' THEN '#c47b0e'
+            WHEN series = 'F96' THEN '#9f9f9f'
+            WHEN series = 'F97' THEN '#B0FFFF'
+            WHEN series = 'F98' THEN '#00999F'
+            WHEN series = 'G01' THEN '#7681CB'
+            WHEN series = 'G02' THEN '#960145'
+            WHEN series = 'G05' THEN '#4B3369'
+            WHEN series = 'G06' THEN '#FA8072'
+            WHEN series = 'G07' THEN '#1bb187'
+            WHEN series = 'G09' THEN '#32527b'
+            ELSE '#000000' END AS SERIES_COLOR
+FROM (
+    SELECT b.*
+    FROM (
+        SELECT pddesc, repairdate, series, prt, NOK, dept, repairminutes, supplier_name_num
+        FROM prod_ts4_rmu
+        WHERE hall LIKE :P3_HALL_SELECT
+          AND NOK = 1
+          AND repairdate &gt;= (SYSDATE - 8/24)
+    ) b
+    LEFT JOIN (
+        SELECT supplier_name_num_loc, series_vfc, commodity_num, qsp_overwrite
+        FROM REF_VFC_TO_Supplier
+    ) c ON b.series || ' - ' || b.prt = c.SERIES_VFC
+    LEFT JOIN (
+        SELECT * FROM APP_60005_QSP_CONTACTS
+        WHERE master_qsp = 'x'
+    ) e ON c.commodity_num = e.commodity
+    WHERE NVL(NVL(qsp_overwrite, QSP_NAME), 'x') LIKE :P3_QSP
+      AND NVL(KIFA, 'x') LIKE :P3_KIFA
+      AND TRIM(SUBSTR(supplier_name_num_loc, 1, INSTR(supplier_name_num_loc, '_') - 1))
+          LIKE '%' || UPPER(:P3_SUPPLIER_NAME) || '%'
+)
+GROUP BY pddesc, series
+ORDER BY ROUND(SUM(repairminutes)) DESC
+FETCH FIRST 5 ROWS ONLY;</code></pre>
+        </section>
+
+        <section id="skills-used">
+            <h2>Skills Used</h2>
+            <p>SQL (joins, aggregation, window functions, CASE logic, bind-variable filters) | Oracle APEX | KPI design | Dashboard layout | Report migration from Power BI</p>
+        </section>
+
+        <p><a href="projects.html">&larr; Back to Projects</a></p>
     </main>
     <footer>
         <div class="footer-content">

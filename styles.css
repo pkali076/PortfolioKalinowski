@@ -215,3 +215,14 @@ section {
 .job-meta { margin-top: 0; font-style: italic; opacity: 0.8; }
 details { margin: 0.75rem 0; }
 summary { cursor: pointer; font-weight: bold; }
+figure { margin: 0 0 1rem; }
+figure img { max-width: 100%; height: auto; }
+figcaption { font-size: 0.9rem; opacity: 0.8; margin-top: 0.3rem; }
+.note { font-size: 0.9rem; font-style: italic; opacity: 0.8; }
+.disclaimer {
+    border-left: 4px solid #c47b0e;
+    background: rgba(196, 123, 14, 0.08);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
