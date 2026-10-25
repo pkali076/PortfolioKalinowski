@@ -1,4 +1,30 @@
-/* Reset and base styles */
+/* =========================================================
+   Philip Kalinowski Portfolio - styles.css
+   Matches the resume look: slate header, off-white page,
+   serif headings, clean sans-serif body, one muted accent.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap');
+
+/* ---------- Color and font settings (change these to re-theme) ---------- */
+:root {
+    --slate: #2f363d;          /* header and footer, same as resume band */
+    --slate-light: #3c444c;
+    --page: #f5f5f2;           /* off-white page background */
+    --card: #ffffff;           /* main content card */
+    --text: #2b2b2b;           /* body text */
+    --muted: #5f6870;          /* dates, notes, captions */
+    --rule: #d9dcde;           /* thin divider lines */
+    --accent: #2f5d8a;         /* links and highlights */
+    --accent-dark: #1f4266;    /* link hover */
+    --code-bg: #f3f4f6;
+
+    --font-heading: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-code: Consolas, 'Courier New', monospace;
+}
+
+/* ---------- Reset and base ---------- */
 * {
     margin: 0;
     padding: 0;
@@ -6,227 +32,367 @@
 }
 
 body {
-    font-family: 'Helvetica', 'Helvetica Neue', Arial, sans-serif;
-    color: #e0e0e0;
-    line-height: 1.6;
-    background-color: #121212;
-    padding-bottom: 50px; /* padding for footer visibility */
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text);
+    background-color: var(--page);
 }
 
-/* Header and Navigation */
+/* ---------- Header and navigation ---------- */
 header {
-    background: #1f1f1f;
-    color: #fff;
-    padding: 1rem 0;
+    background: var(--slate);
+    color: #ffffff;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 2rem 1rem 0;
+    border-bottom: 3px solid var(--accent);
 }
 
 .header-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 1rem;
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 2.6rem;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.tagline {
+    color: #c9ced3;
+    font-size: 1rem;
+    margin-top: 0.4rem;
 }
 
 .profile-picture {
-    width: 200px; /* Adjust the size as needed */
-    height: 200px;
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
-    margin-top: 1rem;
-    border: 3px solid #76c7c0; /* Optional: Add a border */
-    object-fit: cover; /* Ensures the image aspect ratio is maintained */
-    object-position: 50% 30%; /* Adjust this to control which part of the image is visible */
+    border: 3px solid #ffffff;
+    object-fit: cover;
+    object-position: 50% 30%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
-    margin-top: 1rem; /* Add some margin to separate navigation from profile picture */
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-top: 1.25rem;
+    padding-bottom: 0.75rem;
 }
 
 nav ul li a {
-    color: #76c7c0;
+    display: inline-block;
+    color: #e6e9ec;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    padding: 0.45rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.15s ease;
 }
 
-nav ul li a:hover {
-    color: #ffab40; /* Secondary color for hover */
+nav ul li a:hover,
+nav ul li a[aria-current="page"] {
+    background-color: var(--slate-light);
+    color: #ffffff;
 }
 
-/* Main content */
+/* ---------- Main content card ---------- */
 main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background: #1f1f1f;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
+    max-width: 860px;
+    margin: 2.5rem auto;
+    padding: 2.5rem 3rem;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
-h1, h2 {
-    margin-bottom: 1rem;
+.wide-container {
+    max-width: 1060px;
 }
 
-h1 {
-    font-size: 2.5rem;
-    text-align: center;
-}
-
-h2 {
-    font-size: 2rem;
-    color: #76c7c0;
-}
-
-p, ul {
-    margin-bottom: 1rem;
-}
-
-ul {
-    list-style: disc inside;
-}
-
-/* Sections and media */
 section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.25rem;
 }
 
-img, video {
+/* ---------- Headings (resume-style section titles) ---------- */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--slate);
+    line-height: 1.25;
+}
+
+main h2 {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--slate);
+}
+
+main h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.4rem;
+}
+
+/* ---------- Text, lists, links ---------- */
+p {
+    margin-bottom: 1rem;
+}
+
+main ul {
+    list-style: disc;
+    padding-left: 1.4rem;   /* wrapped lines line up with the text */
+    margin-bottom: 1rem;
+}
+
+main li {
+    margin-bottom: 0.4rem;
+}
+
+strong {
+    color: var(--slate);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+a:hover {
+    color: var(--accent-dark);
+    text-decoration-thickness: 2px;
+}
+
+/* ---------- Images, video, figures ---------- */
+img, video, iframe {
     max-width: 100%;
     display: block;
-    margin: 1rem 0;
     border-radius: 4px;
 }
 
-/* Buttons */
-button, .button {
-    background-color: #76c7c0;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 1rem;
-    border-radius: 5px;
+main img,
+main video {
+    height: auto;
+    margin: 1rem 0;
+    border: 1px solid var(--rule);
+}
+
+.image-gallery {
+    display: grid;
+    gap: 1.5rem;
+}
+
+figure {
+    margin: 0 0 1.5rem;
+}
+
+figure img {
+    width: 100%;
+    margin-bottom: 0.4rem;
+}
+
+figcaption {
+    font-size: 0.88rem;
+    color: var(--muted);
+}
+
+/* ---------- Experience (About Me) ---------- */
+.job {
+    margin-bottom: 1.75rem;
+}
+
+.job h3 {
+    margin: 0 0 0.1rem;
+}
+
+.job-meta {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- Resume previews ---------- */
+details {
+    margin: 0.75rem 0;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.6rem 1rem;
+    background: #fafafa;
+}
+
+summary {
     cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+details[open] summary {
+    margin-bottom: 0.75rem;
+}
+
+details iframe {
+    border: 1px solid var(--rule);
+}
+
+/* ---------- Projects ---------- */
+.project {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+}
+
+.project:last-of-type {
+    border-bottom: none;
+}
+
+.project-tools {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: -0.4rem;
+}
+
+.project-thumb {
+    width: 100%;
+}
+
+/* ---------- Notes and disclaimer ---------- */
+.note {
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.disclaimer {
+    border-left: 4px solid var(--accent);
+    background: #eef3f8;
+    padding: 0.9rem 1.1rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.93rem;
+}
+
+.disclaimer p {
+    margin-bottom: 0;
+}
+
+/* ---------- Code blocks ---------- */
+pre,
+.code-snippet {
+    font-family: var(--font-code);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    background: var(--code-bg);
+    color: #1f2328;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    margin: 0.75rem 0 1.5rem;
+    overflow-x: auto;       /* scroll sideways instead of wrapping */
+    white-space: pre;
+}
+
+code {
+    font-family: var(--font-code);
+}
+
+/* ---------- Buttons ---------- */
+button, .button {
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 button:hover, .button:hover {
-    background-color: #ffab40; /* Secondary color for hover */
+    background-color: var(--accent-dark);
 }
 
-/* Footer */
+/* ---------- Footer ---------- */
 footer {
-    background: #1f1f1f;
-    color: #e0e0e0;
+    background: var(--slate);
+    color: #d6dade;
     text-align: center;
-    padding: 2rem 0;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+    padding: 2rem 1rem;
 }
 
 footer .footer-content {
-    max-width: 800px;
+    max-width: 860px;
     margin: 0 auto;
 }
 
+footer p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover {
+    color: #c9d8e8;
+}
+
+footer .social-links {
+    margin: 0.5rem 0;
+    color: #8a939b;
+}
+
 footer .social-links a {
-    color: #76c7c0;
+    margin: 0 0.5rem;
+    font-weight: 600;
     text-decoration: none;
-    margin: 0 10px;
-    font-size: 1.2rem;
 }
 
 footer .social-links a:hover {
-    color: #ffab40; /* Secondary color for hover */
-}
-
-footer p, footer a {
-    font-size: 0.9rem;
+    text-decoration: underline;
 }
 
 footer .footer-bottom {
     margin-top: 1rem;
     font-size: 0.8rem;
-    color: #666;
+    color: #8a939b;
 }
 
-/* Links */
-a {
-    color: #76c7c0;
-}
+/* ---------- Phones and small screens ---------- */
+@media (max-width: 640px) {
+    header h1 {
+        font-size: 2rem;
+    }
 
-a:hover {
-    color: #ffab40;
-    text-decoration: none;
-}
+    .profile-picture {
+        width: 130px;
+        height: 130px;
+    }
 
-/* Additional styles for a cleaner look */
-.container {
-    padding: 0 1rem;
-}
-
-header h1, footer p {
-    font-weight: 300;
-}
-
-section {
-    padding: 1rem;
-    border-bottom: 1px solid #333;
-}
-
-/* Wide Container Specific Styles */
-.wide-container {
-    max-width: 1000px; /* Adjust this value as needed */
-}
-
-.wide-container img {
-    width: 80%; /* Adjust this percentage or use a fixed width */
-    height: auto; /* Ensures the aspect ratio is maintained */
-}
-
-.wide-container .code-snippet pre {
-    white-space: pre-wrap; /* Ensures code snippets wrap properly */
-}
-
-@media (max-width: 600px) {
     main {
         margin: 1rem;
-        padding: 1rem;
+        padding: 1.5rem 1.25rem;
     }
 
-    nav ul li {
-        display: block;
-        margin: 0.5rem 0;
-    }
-
-    .wide-container img {
-        width: 100%; /* Ensure images take full width on smaller screens */
+    main h2 {
+        font-size: 1.4rem;
     }
 }
-.job { margin-bottom: 1.5rem; }
-.job h3 { margin-bottom: 0.2rem; }
-.job-meta { margin-top: 0; font-style: italic; opacity: 0.8; }
-details { margin: 0.75rem 0; }
-summary { cursor: pointer; font-weight: bold; }
-figure { margin: 0 0 1rem; }
-figure img { max-width: 100%; height: auto; }
-figcaption { font-size: 0.9rem; opacity: 0.8; margin-top: 0.3rem; }
-.note { font-size: 0.9rem; font-style: italic; opacity: 0.8; }
-.disclaimer {
-    border-left: 4px solid #c47b0e;
-    background: rgba(196, 123, 14, 0.08);
-    padding: 0.75rem 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-}
-.project { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); }
-.project-tools { font-size: 0.9rem; font-weight: bold; opacity: 0.75; margin-top: -0.5rem; }
-.project-thumb { max-width: 100%; height: auto; border: 1px solid rgba(0,0,0,0.15); }
-.project video, .project iframe { max-width: 100%; }
