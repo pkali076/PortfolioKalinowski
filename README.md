@@ -33,6 +33,7 @@ I work where data, software, and manufacturing quality meet. At BMW Group, I wro
 - GitHub Pages for hosting
 
 ## Repository Structure
+```
 PortfolioKalinowski/
 ├── index.html Home page
 ├── projects.html Projects page
@@ -48,6 +49,7 @@ PortfolioKalinowski/
 ├── Assets/ Images and videos
 ├── AudioVisualizer/ Audio Visualizer project
 └── project_3_madlib/ Flutter MadLib project
+```
 
 ## Run It Locally
 
