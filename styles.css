@@ -226,3 +226,7 @@ figcaption { font-size: 0.9rem; opacity: 0.8; margin-top: 0.3rem; }
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
 }
+.project { padding-bottom: 1.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); }
+.project-tools { font-size: 0.9rem; font-weight: bold; opacity: 0.75; margin-top: -0.5rem; }
+.project-thumb { max-width: 100%; height: auto; border: 1px solid rgba(0,0,0,0.15); }
+.project video, .project iframe { max-width: 100%; }
